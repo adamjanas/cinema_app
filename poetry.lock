@@ -138,6 +138,17 @@ version = "1.9.2"
 
 [[package]]
 category = "dev"
+description = "Lightweight model and form field for phone numbers in Django"
+name = "django-phone-field"
+optional = false
+python-versions = "*"
+version = "1.8.1"
+
+[package.dependencies]
+Django = ">=1.10"
+
+[[package]]
+category = "dev"
 description = "the modular source code checker: pep8 pyflakes and co"
 name = "flake8"
 optional = false
@@ -377,7 +388,7 @@ python-versions = "*"
 version = "0.2.5"
 
 [metadata]
-content-hash = "9d4a7f3c50a5522a5f6ea40305ebf7cc1ab8eed06934dd77cb993dee8b0d2b37"
+content-hash = "96a28f378dd7b45da8c82185a9bc5770c746fb7ca5cfcf719acf6259994b9631"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -427,6 +438,10 @@ django-cleanup = [
 django-crispy-forms = [
     {file = "django-crispy-forms-1.9.2.tar.gz", hash = "sha256:f2f1e0fbb458851636447cfb6be1a611b40c8ac9e41a74ba923011378670b43b"},
     {file = "django_crispy_forms-1.9.2-py3-none-any.whl", hash = "sha256:888bb316db89b60050a42ec35080facb361d823eec38010ccb0702f45642d3b8"},
+]
+django-phone-field = [
+    {file = "django-phone-field-1.8.1.tar.gz", hash = "sha256:db63af60fc3a3c66b9faa7e72bb7972cd1518299f2e93d68dd95d8df6214f7ed"},
+    {file = "django_phone_field-1.8.1-py3-none-any.whl", hash = "sha256:407e74b65e8f7dd14d0a0aa89e277516d57ad6a09ce992cdd94e15b1624b9961"},
 ]
 flake8 = [
     {file = "flake8-3.8.3-py2.py3-none-any.whl", hash = "sha256:15e351d19611c887e482fb960eae4d44845013cc142d42896e9862f775d8cf5c"},
