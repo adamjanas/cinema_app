@@ -1,6 +1,6 @@
 from django.urls import path
 from django.conf.urls import include
-from app.users.views import register
+from app.users.views import register, create_admin
 from django.contrib.auth import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('register/', register, name='register'),
+    path('create-admin/', create_admin, name='create-admin'),
     path('auth/login/', views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('auth/logout/', views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('auth/password-reset/', views.PasswordResetView.as_view(template_name='users/password_reset.html'),
