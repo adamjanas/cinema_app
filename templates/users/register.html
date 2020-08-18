@@ -1,0 +1,35 @@
+{% extends "app/base.html" %}
+{% load crispy_forms_tags %}
+
+<div class="navbar-nav"></div>
+
+{% block content %}
+
+<div class="content-section">
+	<form method="POST">
+		{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border_bottom mb-4"> Join Us Today </legend>
+
+				    {{ form.username|as_crispy_field }}
+					{{ form.email|as_crispy_field }}
+					{{ form.phone_number|as_crispy_field }}
+				{% if user.is_superuser %}
+					{{ form.role|as_crispy_field }}
+				{% endif %}
+					{{ form.password1|as_crispy_field }}
+					{{ form.password2|as_crispy_field }}
+
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-outline-info" type="submit"> Register </button>
+			</div>
+	</form>
+	<div class="border-top pt-3">
+		<small class="test-muted">
+			Already Have An Account?<a class=ml-2 href="{% url 'login' %}">Sign In</a>
+		</small>
+	</div>
+</div>
+
+{% endblock content %}
