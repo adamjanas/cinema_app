@@ -16,16 +16,15 @@
 	<header class="site-header">
   <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
     <div class="container">
-      <a class="navbar-brand mr-4" href="/">Cinema Site</a>
+      <a class="navbar-brand mr-4" href="{% url 'home' %}">Cinema Site</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarToggle">
         <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
-            <a class="nav-item nav-link" href="#">Schedule</a>
-            <a class="nav-item nav-link" href="#">Prices</a>
-            <a class="nav-item nav-link" href="#">Promotions</a>
+            <a class="nav-item nav-link" href="{% url 'show-list' %}">Schedule</a>
+            <a class="nav-item nav-link" href="{% url 'price-list' %}">Prices</a>
+            <a class="nav-item nav-link" href="{% url 'promo-list' %}">Promotions</a>
         </div>
         <div class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
@@ -39,13 +38,30 @@
             <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
             {% endif %}
             {% if user.role == 2 %}
-            <a class="nav-item nav-link" href="#">SELL</a>
-            <a class="nav-item nav-link" href="#">PRINT TICKETS</a>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                RECEPTION OPTIONS
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">SELL</a>
+            <a class="dropdown-item" href="#">PRINT TICKETS</a>
+                </div>
+            </div>
             {% endif %}
             {% if user.role == 3 %}
-            <a class="nav-item nav-link" href="#">+HALL</a>
-            <a class="nav-item nav-link" href="#">+MOVIE</a>
-            <a class="nav-item nav-link" href="#">+SHOW</a>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                MANAGER OPTIONS
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{% url 'home' %}">ADS</a>
+                    <a class="dropdown-item" href="{% url 'price-list' %}">PRICES</a>
+                    <a class="dropdown-item" href="{% url 'promo-list' %}">PROMOS</a>
+                    <a class="dropdown-item" href="{% url 'hall-list' %}">HALLS</a>
+                    <a class="dropdown-item" href="{% url 'movie-list' %}">MOVIES</a>
+                    <a class="dropdown-item" href="{% url 'show-list' %}">SHOWS</a>
+                </div>
+            </div>
             {% endif %}
         </div>
       </div>
