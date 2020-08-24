@@ -2,7 +2,20 @@ from django.db import models
 from app.users.models import User
 from django.urls import reverse
 import datetime
-from app.core.models import BaseAbstractModel, CreatedAtAbstractModel
+from app.core.models import CreatedAtAbstractModel
+
+
+class BaseAbstractModel(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    content = models.TextField()
+
+
+    def __str__(self):
+        return f"{self.name} - {self.author}"
+
+    class Meta:
+        abstract = True
 
 
 class Advertisement(BaseAbstractModel, CreatedAtAbstractModel):
