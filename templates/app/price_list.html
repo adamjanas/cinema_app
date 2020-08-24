@@ -1,0 +1,20 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+{% if user.role == 3 %}
+    <a class="btn btn-success btn-lg mt-1 mb-1" href="{% url 'create-price' %}">Create Price</a>
+{% endif %}
+{% for price in prices %}
+<article class="media content-section">
+  <div class="media-body">
+    <h2><a class="article-title" href="#">{{ price.name }} - {{price.value}}</a></h2>
+    {% if user.role == 3 %}
+    <a class="btn btn-info btn-sm mt-1 mb-1" href="{% url 'update-price' price.pk %}">Update</a>
+    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'delete-price' price.pk %}">Delete</a>
+    {% endif %}
+  </div>
+</article>
+{% endfor %}
+
+{% endblock content %}
