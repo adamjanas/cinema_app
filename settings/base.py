@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'app.structure',
     'app.users',
     'app.core',
+    'app.clients',
 
     # 3rd-party applications
     'crispy_forms',
