@@ -5,6 +5,7 @@ from app.structure.models import (
     Promotion,
     Price,
     Hall,
+    Seat,
     Movie,
     Show,
 )
@@ -13,6 +14,7 @@ from django.views.generic import (
     ListView,
     UpdateView,
     DeleteView,
+    DetailView
 )
 
 
@@ -127,7 +129,7 @@ class MovieCreateView(CreateView):
     model = Movie
     fields = ['name', 'content']
     template_name = 'app/movie_form.html'
-    success_url = '/'
+    success_url = reverse_lazy('movie-list')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -155,7 +157,7 @@ class MovieDeleteView(TestFuncMixin, DeleteView):
 
 class HallCreateView(CreateView):
     model = Hall
-    fields = ['name', 'columns', 'rows']
+    fields = ['name']
     template_name = 'app/hall_form.html'
     success_url = reverse_lazy('hall-list')
 
@@ -172,7 +174,7 @@ class HallListView(ListView):
 
 class HallUpdateView(TestFuncMixin, UpdateView):
     model = Hall
-    fields = ['name', 'columns', 'rows']
+    fields = ['name']
     template_name = 'app/hall_form.html'
     success_url = reverse_lazy('hall-list')
 
@@ -180,6 +182,37 @@ class HallUpdateView(TestFuncMixin, UpdateView):
 class HallDeleteView(TestFuncMixin, DeleteView):
     model = Hall
     success_url = reverse_lazy('hall-list')
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+
+class SeatCreateView(CreateView):
+    model = Seat
+    fields = ['row', 'column']
+    template_name = 'app/seat_form.html'
+    success_url = reverse_lazy('seat-list')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class SeatListView(ListView):
+    model = Seat
+    template_name = 'app/seat_list.html'
+    context_object_name = 'seats'
+    ordering = ['-created_at']
+
+class SeatUpdateView(TestFuncMixin, UpdateView):
+    model = Seat
+    fields = ['row', 'column']
+    template_name = 'app/seat_form.html'
+    success_url = reverse_lazy('seat-list')
+
+
+class SeatDeleteView(TestFuncMixin, DeleteView):
+    model = Seat
+    success_url = reverse_lazy('seat-list')
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)

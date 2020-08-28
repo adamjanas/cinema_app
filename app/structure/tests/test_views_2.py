@@ -8,12 +8,13 @@ from app.structure.models import (
     Promotion,
     Price,
     Hall,
+    Seat,
     Movie,
     Show,
 )
 
 
-class UserTestCase(TestCase):
+class StructureTestCase(TestCase):
 
     client = Client()
 
@@ -30,9 +31,10 @@ class UserTestCase(TestCase):
         self.ad = Advertisement.objects.create(author=self.client.user, name='testname', content='testcontent')
         self.promotion = Promotion.objects.create(author=self.client.user, name='testname', content='testcontent')
         self.price = Price.objects.create(author=self.client.user, name='testname', value=2)
-        self.hall = Hall.objects.create(author=self.client.user, name='testname', columns=1, rows=1)
+        self.hall = Hall.objects.create(author=self.client.user, name='testname')
         self.movie = Movie.objects.create(author=self.client.user, name='testname', content='testcontent')
         self.show = Show.objects.create(author=self.client.user, movie=self.movie, hall=self.hall)
+        self.seat = Seat.objects.create(author=self.client.user, row='A', column=5)
 
         self.ad_list = Advertisement.objects.all()
         self.promo_list = Promotion.objects.all()
@@ -40,6 +42,7 @@ class UserTestCase(TestCase):
         self.price_list = Price.objects.all()
         self.hall_list = Hall.objects.all()
         self.show_list = Show.objects.all()
+        self.seat_list = Seat.objects.all()
         self.movie_1 = Movie.objects.get(name='testname')
         self.hall_1 = Hall.objects.get(name='testname')
 
@@ -293,16 +296,13 @@ class UserTestCase(TestCase):
         data = {
             'author': self.client.user,
             'name': 'testname',
-            'columns': '2',
-            'rows': '2'
+
         }
 
         response = self.client.post(url, data=data, follow=True)
 
         self.assertTemplateUsed('app/hall_form.html')
         self.assertIn(data['name'], response.content.decode())
-        self.assertIn(data['columns'], response.content.decode())
-        self.assertIn(data['rows'], response.content.decode())
         self.assertEqual(response.status_code, 200)
 
     def test_hall_delete(self):
@@ -324,16 +324,64 @@ class UserTestCase(TestCase):
         data = {
             'author': self.client.user,
             'name': 'testname - updated',
-            'columns': '3',
-            'rows': '3'
         }
 
         response = self.client.post(url, data=data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed('app/hall_form.html')
         self.assertIn(data['name'], response.content.decode())
-        self.assertIn(data['columns'], response.content.decode())
-        self.assertIn(data['rows'], response.content.decode())
+
+    def test_seat_list(self):
+        self.client.login(username='testuser', password='testpassword')
+        url = reverse('seat-list')
+
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed('app/seat_list.html')
+
+    def test_seat_create(self):
+        self.client.login(username='testuser', password='testpassword')
+
+        url = reverse('create-seat')
+
+        data = {
+            'author': self.client.user,
+            'row': 'A',
+            'column': 2
+        }
+
+        response = self.client.post(url, data=data, follow=True)
+
+        self.assertTemplateUsed('app/seat_form.html')
+        self.assertIn(data['row'], response.content.decode())
+        self.assertEqual(response.status_code, 200)
+
+    def test_seat_delete(self):
+        #deleting by overwriting GET method
+        self.client.login(username='testuser', password='testpassword')
+
+        url = reverse('delete-seat', args=(self.seat.pk,))
+
+        response = self.client.get(url, follow=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(self.seat in self.seat_list)
+
+    def test_seat_update(self):
+        self.client.login(username='testuser', password='testpassword')
+
+        url = reverse('update-seat', args=(self.seat.pk,))
+
+        data = {
+            'author': self.client.user,
+            'row': 'A',
+            'column': 2
+        }
+
+        response = self.client.post(url, data=data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed('app/seat_form.html')
 
     def test_show_list(self):
         self.client.login(username='testuser', password='testpassword')
