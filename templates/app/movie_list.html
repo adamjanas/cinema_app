@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if user.role == 3 %}
-    <a class="btn btn-success btn-lg mt-1 mb-1" href="{% url 'create-show' %}">Create Movie</a>
+    <a class="btn btn-success btn-lg mt-1 mb-1" href="{% url 'create-movie' %}">Create Movie</a>
 {% endif %}
 {% for movie in movies %}
 <article class="media content-section">

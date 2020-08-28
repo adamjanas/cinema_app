@@ -1,0 +1,106 @@
+{% extends "app/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="content-section">
+	<form method="POST">
+		{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border_bottom mb-4">Reservation</legend>
+
+				{{form|crispy}}
+
+			</fieldset>
+
+			<div class="form-group">
+				<button class="btn btn-outline-info" type="submit">Save</button>
+			</div>
+	</form>
+	<div class="media-body">
+		<h2><a class="article-title">Available Seats:</a></h2>
+		{% for item in seats %}
+            <p class="btn btn-success btn-sm mt-1 mb-1">Seat: {{item}}</p>
+		{% endfor %}
+</div>
+</div>
+	<h2><a class="article-title">Cinema Hall Appearance</a></h2>
+<table class="table">
+<thead>
+  <tr>
+    <td></td>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    <td></td>
+    <td>4</td>
+    <td>5</td>
+    <td>6</td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>A</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>B</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>C</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>D</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>E</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>F</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+{% endblock content %}

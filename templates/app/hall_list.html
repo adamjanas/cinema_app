@@ -9,8 +9,6 @@
 <article class="media content-section">
   <div class="media-body">
     <h2><a class="article-title" href="#">{{ hall.name }}</a></h2>
-    <p class="article-content">Columns: {{ hall.columns }}</p>
-    <p class="article-content">Rows: {{ hall.rows }}</p>
     {% if user.role == 3 %}
     <a class="btn btn-info btn-sm mt-1 mb-1" href="{% url 'update-hall' hall.pk %}">Update</a>
     <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'delete-hall' hall.pk %}">Delete</a>
