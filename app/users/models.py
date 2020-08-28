@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phone_field import PhoneField
-from app.users.constants import UserRoleE
+from app.core.constants import UserRoleE
 
 
 class User(AbstractUser):
