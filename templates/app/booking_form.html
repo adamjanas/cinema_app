@@ -29,13 +29,13 @@
 <thead>
   <tr>
     <td></td>
-    <td>1</td>
-    <td>2</td>
-    <td>3</td>
+    {% for i in range_column_x %}
+    <td>{{i}}</td>
+    {% endfor %}
     <td></td>
-    <td>4</td>
-    <td>5</td>
-    <td>6</td>
+    {% for i in range_column_y %}
+    <td>{{i}}</td>
+    {% endfor %}
   </tr>
 </thead>
 <tbody>
