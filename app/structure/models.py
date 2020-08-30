@@ -12,7 +12,6 @@ class BaseAbstractModel(models.Model):
     name = models.CharField(max_length=50)
     content = models.TextField()
 
-
     def __str__(self):
         return f"{self.name} - {self.author}"
 
@@ -36,6 +35,7 @@ class Price(CreatedAtAbstractModel):
     def __str__(self):
         return f"{self.name} - {self.value}"
 
+
 class Movie(BaseAbstractModel, CreatedAtAbstractModel):
     pass
 
@@ -54,9 +54,12 @@ class Hall(CreatedAtAbstractModel):
 class Seat(CreatedAtAbstractModel):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     row = models.CharField(max_length=1, choices=SeatRowE.choices())
-    column = models.PositiveIntegerField(default=1,
-                                         validators=[MinValueValidator(1), MaxValueValidator(6)],
-                                         help_text='Column (1-6)')
+    column = models.PositiveIntegerField(
+        default=1,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(6)],
+        help_text='Column (1-6)')
 
     def __str__(self):
         return f"{self.row}{self.column}"
@@ -64,12 +67,15 @@ class Seat(CreatedAtAbstractModel):
 
 class Show(CreatedAtAbstractModel):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    movie = models.ForeignKey('Movie', on_delete=models.CASCADE, related_name='movies')
-    hall = models.ForeignKey('Hall', on_delete=models.CASCADE, related_name='halls')
+    movie = models.ForeignKey(
+        'Movie',
+        on_delete=models.CASCADE,
+        related_name='movies')
+    hall = models.ForeignKey(
+        'Hall',
+        on_delete=models.CASCADE,
+        related_name='halls')
     date = models.DateTimeField(default=datetime.date.today())
 
     def __str__(self):
         return f"{self.movie} show"
-
-
-
