@@ -14,9 +14,9 @@ class UserRoleE(ChoiceEnum):
 
 
 class SeatRowE(ChoiceEnum):
-    A = 'A'
-    B = 'B'
-    C = 'C'
-    D = 'D'
-    E = 'E'
-    F = 'F'
+    A = "A"
+    B = "B"
+    C = "C"
+    D = "D"
+    E = "E"
+    F = "F"

@@ -1,10 +1,11 @@
-from django.db import models
-from app.users.models import User
-from django.urls import reverse
 import datetime
-from app.core.models import CreatedAtAbstractModel
+
 from app.core.constants import SeatRowE
+from app.core.models import CreatedAtAbstractModel
+from app.users.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
+from django.urls import reverse
 
 
 class BaseAbstractModel(models.Model):
@@ -56,10 +57,9 @@ class Seat(CreatedAtAbstractModel):
     row = models.CharField(max_length=1, choices=SeatRowE.choices())
     column = models.PositiveIntegerField(
         default=1,
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(6)],
-        help_text='Column (1-6)')
+        validators=[MinValueValidator(1), MaxValueValidator(6)],
+        help_text="Column (1-6)",
+    )
 
     def __str__(self):
         return f"{self.row}{self.column}"
@@ -67,14 +67,8 @@ class Seat(CreatedAtAbstractModel):
 
 class Show(CreatedAtAbstractModel):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    movie = models.ForeignKey(
-        'Movie',
-        on_delete=models.CASCADE,
-        related_name='movies')
-    hall = models.ForeignKey(
-        'Hall',
-        on_delete=models.CASCADE,
-        related_name='halls')
+    movie = models.ForeignKey("Movie", on_delete=models.CASCADE, related_name="movies")
+    hall = models.ForeignKey("Hall", on_delete=models.CASCADE, related_name="halls")
     date = models.DateTimeField(default=datetime.date.today())
 
     def __str__(self):
