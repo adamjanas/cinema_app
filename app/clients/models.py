@@ -1,10 +1,11 @@
 import datetime
 
+from django.db import models
+from django.urls import reverse
+
 from app.core.models import CreatedAtAbstractModel
 from app.structure.models import Price, Seat, Show
 from app.users.models import User
-from django.db import models
-from django.urls import reverse
 
 
 class Booking(CreatedAtAbstractModel):
