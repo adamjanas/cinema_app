@@ -39,8 +39,9 @@
   </tr>
 </thead>
 <tbody>
+{% for row in rows %}
   <tr>
-    <td>A</td>
+    <td>{{row}}</td>
     <td></td>
     <td></td>
     <td></td>
@@ -49,56 +50,8 @@
     <td></td>
     <td></td>
   </tr>
-  <tr>
-    <td>B</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>C</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>D</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>E</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>F</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
+{% endfor %}
+
 </tbody>
 </table>
 </div>
