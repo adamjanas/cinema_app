@@ -8,4 +8,5 @@ def superuser_required():
                 return self.request.user.is_superuser
 
         return WrappedClass
+
     return wrapper

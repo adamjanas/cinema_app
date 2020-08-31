@@ -12,7 +12,10 @@
     <p class="article-content">Hall: {{ show.hall }}</p>
     <p class="article-content">{{ show.date }}</p>
     {% if user.role == 1 %}
-    <a class="btn btn-primary btn-sm mt-1 mb-1" href="#">Book</a>
+    <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'book-show' show.pk %}">Reservation</a>
+    {% endif %}
+    {% if user.role == 2 %}
+    <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'book-show' show.pk %}">Sell Ticket</a>
     {% endif %}
     {% if user.role == 3 %}
     <a class="btn btn-info btn-sm mt-1 mb-1" href="{% url 'update-show' show.pk %}">Update</a>

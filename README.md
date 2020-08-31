@@ -5,10 +5,11 @@
 
 ## General info
 This is the repository of cinema web app built in Django.
-Project is simply about booking seats in cinema and provides some cool features depended on (admin, reception, client) account.
-Administration cares about adding cinema halls, movies.
-Reception can register clients and print the tickets.
-Clients may choose and book seats.
+Project is simply about booking seats in cinema and provides some cool features depended on (manager, reception, client) account.
+Superuser is responsible for accounts creation.
+Management cares about adding advertisements, promotions, prices (tickets), cinema halls, movies and shows.
+Reception can sell and print the tickets in PDF format.
+Clients may choose show and book seats.
 
 ## Technologies
 Project is created with:

@@ -1,0 +1,59 @@
+{% extends "app/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="content-section">
+	<form method="POST">
+		{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border_bottom mb-4">Reservation</legend>
+
+				{{form|crispy}}
+
+			</fieldset>
+
+			<div class="form-group">
+				<button class="btn btn-outline-info" type="submit">Save</button>
+			</div>
+	</form>
+	<div class="media-body">
+		<h2><a class="article-title">Available Seats:</a></h2>
+		{% for item in seats %}
+            <p class="btn btn-success btn-sm mt-1 mb-1">Seat: {{item}}</p>
+		{% endfor %}
+</div>
+</div>
+	<h2><a class="article-title">Cinema Hall Appearance</a></h2>
+<table class="table">
+<thead>
+  <tr>
+    <td></td>
+    {% for i in range_column_x %}
+    <td>{{i}}</td>
+    {% endfor %}
+    <td></td>
+    {% for i in range_column_y %}
+    <td>{{i}}</td>
+    {% endfor %}
+  </tr>
+</thead>
+<tbody>
+{% for row in rows %}
+  <tr>
+    <td>{{row}}</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+{% endfor %}
+
+</tbody>
+</table>
+</div>
+
+{% endblock content %}
