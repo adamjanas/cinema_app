@@ -43,6 +43,7 @@ class BookingCreateView(CreateView):
         context['seats'] = Seat.objects.filter(id__in=queryset_id)
         context['range_column_x'] = range(1, 4)
         context['range_column_y'] = range(4, 7)
+        context['rows'] = ['A', 'B', 'C', 'D', 'E', 'F']
         return context
 
 
@@ -86,7 +87,7 @@ def generate_pdf(request, pk):
     pdf = render_to_pdf('app/pdf.html', context)
     if pdf:
         response = HttpResponse(pdf, content_type='application/pdf')
-        filename = f"Ticket_{12345}.pdf"
+        filename = f"Ticket_{booking.pk}.pdf"
         content = f"inline; filename={filename}"
         download = request.GET.get("download")
         if download:
