@@ -1,6 +1,6 @@
-from app.structure.models import (Advertisement, Hall, Movie, Price, Promotion,
-                                  Show)
 from django.contrib import admin
+
+from app.structure.models import Advertisement, Hall, Movie, Price, Promotion, Show
 
 admin.site.register(Advertisement)
 admin.site.register(Promotion)

@@ -1,9 +1,10 @@
 import os
 
-from app.users.forms import UserAdminCreateForm
-from app.users.models import User
 from django.test import TestCase
 from django.test.client import Client
+
+from app.users.forms import UserAdminCreateForm
+from app.users.models import User
 
 
 class FormTestCase(TestCase):

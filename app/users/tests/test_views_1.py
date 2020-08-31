@@ -1,11 +1,12 @@
 import os
 
-from app.users.forms import UserAdminCreateForm
-from app.users.models import User
 from django.http import HttpResponse
 from django.test import TestCase
 from django.test.client import Client
 from django.urls import reverse
+
+from app.users.forms import UserAdminCreateForm
+from app.users.models import User
 
 
 class UserTestCase(TestCase):

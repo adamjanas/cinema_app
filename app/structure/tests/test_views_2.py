@@ -1,11 +1,11 @@
 import os
 
-from app.structure.models import (Advertisement, Hall, Movie, Price, Promotion,
-                                  Seat, Show)
-from app.users.models import User
 from django.test import TestCase
 from django.test.client import Client
 from django.urls import reverse
+
+from app.structure.models import Advertisement, Hall, Movie, Price, Promotion, Seat, Show
+from app.users.models import User
 
 
 class StructureTestCase(TestCase):
@@ -22,22 +22,12 @@ class StructureTestCase(TestCase):
             "password": "testpassword",
         }
         self.client.user = User.objects.create_user(**self.credentials)
-        self.ad = Advertisement.objects.create(
-            author=self.client.user, name="testname", content="testcontent"
-        )
-        self.promotion = Promotion.objects.create(
-            author=self.client.user, name="testname", content="testcontent"
-        )
-        self.price = Price.objects.create(
-            author=self.client.user, name="testname", value=2
-        )
+        self.ad = Advertisement.objects.create(author=self.client.user, name="testname", content="testcontent")
+        self.promotion = Promotion.objects.create(author=self.client.user, name="testname", content="testcontent")
+        self.price = Price.objects.create(author=self.client.user, name="testname", value=2)
         self.hall = Hall.objects.create(author=self.client.user, name="testname")
-        self.movie = Movie.objects.create(
-            author=self.client.user, name="testname", content="testcontent"
-        )
-        self.show = Show.objects.create(
-            author=self.client.user, movie=self.movie, hall=self.hall
-        )
+        self.movie = Movie.objects.create(author=self.client.user, name="testname", content="testcontent")
+        self.show = Show.objects.create(author=self.client.user, movie=self.movie, hall=self.hall)
         self.seat = Seat.objects.create(author=self.client.user, row="A", column=5)
 
         self.ad_list = Advertisement.objects.all()

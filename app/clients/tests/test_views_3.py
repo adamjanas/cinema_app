@@ -1,12 +1,12 @@
 import os
 
-from app.clients.models import Booking
-from app.structure.models import (Advertisement, Hall, Movie, Price, Promotion,
-                                  Seat, Show)
-from app.users.models import User
 from django.test import TestCase
 from django.test.client import Client
 from django.urls import reverse
+
+from app.clients.models import Booking
+from app.structure.models import Advertisement, Hall, Movie, Price, Promotion, Seat, Show
+from app.users.models import User
 
 
 class ClientTestCase(TestCase):
@@ -23,17 +23,11 @@ class ClientTestCase(TestCase):
             "password": "testpassword",
         }
         self.client.user = User.objects.create_user(**self.credentials)
-        self.ticket = Price.objects.create(
-            author=self.client.user, name="testname", value=4
-        )
+        self.ticket = Price.objects.create(author=self.client.user, name="testname", value=4)
         self.seat = Seat.objects.create(author=self.client.user, row="A", column=2)
         self.hall = Hall.objects.create(author=self.client.user, name="testname")
-        self.movie = Movie.objects.create(
-            author=self.client.user, name="testname", content="testcontent"
-        )
-        self.show = Show.objects.create(
-            author=self.client.user, movie=self.movie, hall=self.hall
-        )
+        self.movie = Movie.objects.create(author=self.client.user, name="testname", content="testcontent")
+        self.show = Show.objects.create(author=self.client.user, movie=self.movie, hall=self.hall)
         self.booking = Booking.objects.create(
             user=self.client.user,
             name="testname",

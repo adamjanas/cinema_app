@@ -1,5 +1,6 @@
-from app.users.models import User
 from django.db import models
+
+from app.users.models import User
 
 
 class CreatedAtAbstractModel(models.Model):
